@@ -18,6 +18,13 @@ spec:
     volumeMounts:
     - name: homework-volume
       mountPath: /homework
+    lifecycle:
+      postStart:
+        exec:
+          command: ['bash', '-c', 'rm /homework/index.html']
+
+
+
   initContainers:
   - name: init-container
     image: busybox
@@ -33,8 +40,3 @@ spec:
   volumes: 
   - name: homework-volume
     emptyDir: {}
-    
-  lifecycle:
-    postStart:
-      exec:
-        command: ['bash', '-c', 'rm /homework/index.html']
