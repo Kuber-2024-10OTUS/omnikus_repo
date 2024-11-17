@@ -13,11 +13,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      homework: true
+      app: homework
   template:
     metadata:
       labels:
-        homework: true
+        app: homework
     spec:
       affinity:
         nodeAffinity:
