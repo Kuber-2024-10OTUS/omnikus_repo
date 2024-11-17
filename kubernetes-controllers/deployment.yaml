@@ -29,9 +29,16 @@ spec:
         - name: homework-volume
           mountPath: /homework
         lifecycle:
-          postStart:
+          preStart:
             exec:
               command: ['bash', '-c', 'rm /homework/index.html']
+        readinessProbe:
+          exec:
+            command:
+            - stat
+            - /homework/index.html
+          initialDelaySeconds: 5
+          periodSeconds: 5
 
       initContainers:
       - name: init-container
@@ -44,13 +51,7 @@ spec:
         volumeMounts:
         - name: homework-volume
           mountPath: /init
-        readinessProbe:
-          exec:
-            command:
-            - stat
-            - /homework/index.html
-          initialDelaySeconds: 5
-          periodSeconds: 5
+
       
       volumes: 
       - name: homework-volume
