@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homework-deployment
+  labels:
+    app: homework-pod
+
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 35%
+  replicas: 3
+  selector:
+    matchLabels:
+      app: homework
+  template:
+    metadata:
+      labels:
+        app: homework
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: homework
+                operator: Exists
+  
+      containers:
+      - name: webserver
+        image: nginx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 8000
+        volumeMounts:
+        - name: homework-volume
+          mountPath: /homework
+        # lifecycle:
+        #   preStart:
+        #     exec:
+        #       command: ['bash', '-c', 'rm /homework/index.html']
+        readinessProbe:
+          exec:
+            command:
+            - stat
+            - /homework/index.html
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+      initContainers:
+      - name: init-container
+        image: busybox
+        command:
+        - wget
+        - "-O"
+        - "/init/index.html"
+        - http://info.cern.ch
+        volumeMounts:
+        - name: homework-volume
+          mountPath: /init
+
+      
+      volumes: 
+      - name: homework-volume
+        emptyDir: {}
+
