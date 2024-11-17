@@ -18,8 +18,17 @@ spec:
     metadata:
       labels:
         app: homework
-    
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - macthExpressions:
+                  - key: homework
+                    operator: Exists
+                    value:
+                      - true
+  
       containers:
       - name: webserver
         image: nginx
