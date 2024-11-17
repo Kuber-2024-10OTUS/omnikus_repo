@@ -23,11 +23,11 @@ spec:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-              - matchExpressions:
-                  - key: homework
-                    operator: Exists
-                    value:
-                      - true
+            - matchExpressions:
+              - key: homework
+                operator: Exists
+                value:
+                - true
   
       containers:
       - name: webserver
