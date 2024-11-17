@@ -37,7 +37,7 @@ spec:
             command:
             - cat
             - /homework/index.html
-          initalDelaySeconds: 5
+          initialDelaySeconds: 5
           periodSeconds: 5
 
 
