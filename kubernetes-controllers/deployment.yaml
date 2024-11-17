@@ -22,8 +22,8 @@ spec:
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - MatchExpressions:
+          - nodeSelectorTerms:
+              MatchExpressions:
               - key: homework
                 operator: Exists
                 value:
