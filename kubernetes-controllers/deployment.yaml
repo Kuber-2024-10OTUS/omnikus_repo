@@ -28,13 +28,6 @@ spec:
         volumeMounts:
         - name: homework-volume
           mountPath: /homework
-        readinessProbe:
-          exec:
-            command:
-            - stat
-            - /homework/index.html
-          initialDelaySeconds: 5
-          periodSeconds: 5
         lifecycle:
           postStart:
             exec:
@@ -55,3 +48,10 @@ spec:
       volumes: 
       - name: homework-volume
         emptyDir: {}
+        readinessProbe:
+          exec:
+            command:
+            - stat
+            - /homework/index.html
+          initialDelaySeconds: 5
+          periodSeconds: 5
