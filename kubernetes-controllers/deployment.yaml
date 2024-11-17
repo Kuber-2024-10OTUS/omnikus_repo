@@ -32,6 +32,13 @@ spec:
           postStart:
             exec:
               command: ['bash', '-c', 'rm /homework/index.html']
+        readinessProbe:
+          exec:
+            command:
+            - cat
+            - /homework/index.html
+          initalDelaySeconds: 5
+          periodSeconds: 5
 
 
 
