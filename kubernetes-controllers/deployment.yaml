@@ -44,10 +44,6 @@ spec:
         volumeMounts:
         - name: homework-volume
           mountPath: /init
-      
-      volumes: 
-      - name: homework-volume
-        emptyDir: {}
         readinessProbe:
           exec:
             command:
@@ -55,3 +51,8 @@ spec:
             - /homework/index.html
           initialDelaySeconds: 5
           periodSeconds: 5
+      
+      volumes: 
+      - name: homework-volume
+        emptyDir: {}
+
