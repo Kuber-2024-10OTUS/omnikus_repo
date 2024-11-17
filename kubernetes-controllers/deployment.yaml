@@ -23,7 +23,7 @@ spec:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-              - macthExpressions:
+              - matchExpressions:
                   - key: homework
                     operator: Exists
                     value:
