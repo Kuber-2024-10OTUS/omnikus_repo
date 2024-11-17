@@ -6,6 +6,10 @@ metadata:
     app: homework-pod
 
 spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 35%
   replicas: 3
   selector:
     matchLabels:
