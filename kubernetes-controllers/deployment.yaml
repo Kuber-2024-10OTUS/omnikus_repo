@@ -44,10 +44,9 @@ spec:
             exec:
               command: ['bash', '-c', 'rm /homework/index.html']
         readinessProbe:
-          exec:
-            command:
-            - stat
-            - /homework/index.html
+          httpGet:
+            path: /index.html
+            port: 8000
           initialDelaySeconds: 5
           periodSeconds: 5
 
