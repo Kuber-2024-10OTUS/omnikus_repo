@@ -39,10 +39,10 @@ spec:
         volumeMounts:
         - name: homework-volume
           mountPath: /homework
-        # lifecycle:
-        #   preStart:
-        #     exec:
-        #       command: ['bash', '-c', 'rm /homework/index.html']
+        lifecycle:
+          preStop:
+            exec:
+              command: ['bash', '-c', 'rm /homework/index.html']
         readinessProbe:
           exec:
             command:
