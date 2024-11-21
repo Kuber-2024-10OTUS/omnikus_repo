@@ -6,7 +6,7 @@ metadata:
   #   nginx.ingress.kubernetes.io/rewrite/target: /
 spec:
   ingressClassName: nginx-example
-  rule:
+  rules:
   - host: "homework.otus"
   - http:
       paths:
