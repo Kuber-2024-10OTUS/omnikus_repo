@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: homework-deployment
+  namespace: homework
   labels:
     app: homework-pod
 
