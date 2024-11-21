@@ -36,6 +36,7 @@ spec:
             cpu: "500m"
         ports:
           - containerPort: 8000
+            name: nginx-web-view
         volumeMounts:
         - name: homework-volume
           mountPath: /homework
@@ -44,12 +45,12 @@ spec:
             exec:
               command: ['bash', '-c', 'rm /homework/index.html']
         readinessProbe:
-          exec:
-            command:
-            - stat
-            - /homework/index.html
+          httpGet:
+            path: /index.html
+            port: 8000
           initialDelaySeconds: 5
           periodSeconds: 5
+
 
       initContainers:
       - name: init-container
