@@ -10,7 +10,7 @@ spec:
   - host: homework.otus
   - http:
       paths:
-      - path: /homework/index.html
+      - path: /index.html
         pathType: ImplementationSpecific
         #pathType: Prefix
         backend:
