@@ -11,8 +11,8 @@ spec:
   - http:
       paths:
       - path: /homepage
-        pathType: ImplementationSpecific
-        #pathType: Prefix
+        #pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: homework-service
