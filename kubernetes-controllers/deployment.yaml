@@ -35,7 +35,7 @@ spec:
             memory: "128Mi"
             cpu: "500m"
         ports:
-          - containerPort: 
+          - containerPort: 8000
             name: nginx-web-view
         volumeMounts:
         - name: homework-volume
