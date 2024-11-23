@@ -4,7 +4,7 @@ metadata:
   name: external-lb
   namespace: homework
 spec:
-  controlller: ingress-nginx/ingress-nginx-controller
+  controller: ingress-nginx/ingress-nginx-controller
   parameters:
     apiGroup: k8s.example.com
     kind: IngressParameters
