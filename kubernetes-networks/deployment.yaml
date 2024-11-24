@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: homework-deployment
+  namespace: homework
   labels:
     app: homework-pod
 
@@ -19,17 +20,19 @@ spec:
       labels:
         app: homework
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: homework
-                operator: Exists
+    #   affinity:
+    #     nodeAffinity:
+    #       requiredDuringSchedulingIgnoredDuringExecution:
+    #         nodeSelectorTerms:
+    #         - matchExpressions:
+    #           - key: homework
+    #             operator: Exists
   
       containers:
       - name: webserver
         image: nginx
+        command: ["/bin/sh","-c"]
+        args: ["sed -i 's/listen  .*/listen 8000;/g' /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
         resources:
           limits:
             memory: "128Mi"
@@ -51,6 +54,7 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 5
 
+
       initContainers:
       - name: init-container
         image: busybox
@@ -67,4 +71,3 @@ spec:
       volumes: 
       - name: homework-volume
         emptyDir: {}
-
