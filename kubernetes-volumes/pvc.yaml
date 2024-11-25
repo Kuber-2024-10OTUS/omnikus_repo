@@ -26,7 +26,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   #storageClassName: ""
-  persistentVolumeRecalimPolicy: Retain
+  persistentVolumeReclaimPolicy: Retain
   claimRef:
      name: homework-pvc
      namespace: homework
