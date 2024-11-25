@@ -70,4 +70,5 @@ spec:
       
       volumes: 
       - name: homework-volume
-        emptyDir: {}
+        PersistentVolumeClaim:
+          claimName: homework-pvc
