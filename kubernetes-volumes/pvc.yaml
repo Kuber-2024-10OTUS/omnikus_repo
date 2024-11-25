@@ -5,7 +5,12 @@ metadata:
   namespace: homework
 
 spec:
-  storageClassName: ""
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+  #storageClassName: ""
   volumeName: homework-pv
 
 
@@ -16,7 +21,14 @@ metadata:
   name: homework-pv
 
 spec:
-  storageClassName: ""
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  #storageClassName: ""
+  persistentVolumeRecalimPolicy: Retain
   claimRef:
-    name: homework-pvc
-    namespace: homework
+     name: homework-pvc
+     namespace: homework
+  hostPath:
+    path: "/tmp/data"
