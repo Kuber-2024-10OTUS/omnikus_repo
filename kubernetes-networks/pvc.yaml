@@ -7,3 +7,16 @@ metadata:
 spec:
   storageClassName: ""
   volumeName: homework-pv
+
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: homework-pv
+
+spec:
+  storageClassName: ""
+  claimRef:
+    name: homework-pvc
+    namespace: homework
