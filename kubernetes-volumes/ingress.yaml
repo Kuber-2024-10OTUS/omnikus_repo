@@ -4,9 +4,9 @@ metadata:
   name: homework-ingress
   namespace: homework
   annotations:
+    kubernetes.io/ingress.class: bfe
     nginx.ingress.kubernetes.io/rewrite-target: /index.html
 spec:
-  ingressClassName: nginx
   rules:
   - host: "homework.otus"
   - http:
