@@ -60,7 +60,7 @@ spec:
       initContainers:
       - name: init-container
         image: busybox
-        command: ['bash', '-c', 'touch /init/index.html']
+        command: ['sh', '-c', 'touch /init/index.html']
         #command: ['wget', '-O', '/init/index.html', 'http://info.cern.ch']
         # - wget
         # - "-O"
