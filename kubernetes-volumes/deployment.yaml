@@ -60,11 +60,11 @@ spec:
       initContainers:
       - name: init-container
         image: busybox
-        command:
-        - wget
-        - "-O"
-        - "/init/index.html"
-        - http://info.cern.ch
+        command: ['wget', '-O', '/init/index.html', 'https://info.cern.ch']
+        # - wget
+        # - "-O"
+        # - "/init/index.html"
+        # - http://info.cern.ch
         volumeMounts:
         - name: homework-volume
           mountPath: /init
