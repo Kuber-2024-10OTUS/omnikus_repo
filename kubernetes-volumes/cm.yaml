@@ -14,4 +14,31 @@ data:
   user-interface.properties: |
     color.good=purple
     color.bad=yellow
-    allow.textmode=true    
+    allow.textmode=true
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-cm
+  namespace: homework
+data:
+  default.conf: |-
+    server {
+            listen 8000 default_server;
+            root /homework;
+            server_name  _;
+            index index.php;
+            location / {
+                try_files $uri $uri/ /index.php?$args;
+            }
+
+            location ~ \.php$ {
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass 127.0.0.1:9000;
+                fastcgi_index index.php;
+                include fastcgi_params;
+                fastcgi_param   PATH_INFO       $fastcgi_path_info;
+                fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            }
+        }

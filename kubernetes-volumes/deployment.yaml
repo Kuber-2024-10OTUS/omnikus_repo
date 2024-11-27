@@ -20,13 +20,6 @@ spec:
       labels:
         app: homework
     spec:
-    #   affinity:
-    #     nodeAffinity:
-    #       requiredDuringSchedulingIgnoredDuringExecution:
-    #         nodeSelectorTerms:
-    #         - matchExpressions:
-    #           - key: homework
-    #             operator: Exists
   
       containers:
       - name: webserver
@@ -45,6 +38,9 @@ spec:
           mountPath: /homework
         - name: homework-cm-layout
           mountPath: /homework/conf/
+        - name: nginxconf
+          mountPath: /etc/nginx/conf.d
+          readOnly: true
         lifecycle:
           preStop:
             exec:
@@ -60,12 +56,7 @@ spec:
       initContainers:
       - name: init-container
         image: busybox
-        #command: ['sh', '-c', 'touch /init/index.html']
         command: ['wget', '-O', '/init/index.html', 'http://info.cern.ch']
-        # - wget
-        # - "-O"
-        # - "/init/index.html"
-        # - http://info.cern.ch
         volumeMounts:
         - name: homework-volume
           mountPath: /init
@@ -78,3 +69,8 @@ spec:
       - name: homework-cm-layout
         configMap:
           name: homework-cm
+      - name: nginxconf
+        configMap:
+          defaultMode: 256
+          name: nginx-cm
+          optional: false
