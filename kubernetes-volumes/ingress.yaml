@@ -10,7 +10,7 @@ spec:
   ingressClassName: nginx
   rules:
   - host: "homework.otus"
-  - http:
+    http:
       paths:
       - path: /homepage(/|$)(.*)
         pathType: ImplementationSpecific
