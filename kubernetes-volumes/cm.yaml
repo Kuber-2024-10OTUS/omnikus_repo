@@ -28,7 +28,7 @@ data:
             listen 8000 default_server;
             root /homework;
             server_name  _;
-            index index.php;
+            index index.php game.properties;
             location / {
                 try_files $uri $uri/ /index.php?$args;
             }
