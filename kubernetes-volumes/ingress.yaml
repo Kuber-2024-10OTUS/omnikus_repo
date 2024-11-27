@@ -20,10 +20,10 @@ spec:
             name: homework-service
             port:
               number: 80
-      - path: /conf/file
-        pathType: Prefix
-        backend:
-          service:
-            name: homework-service
-            port:
-              number: 80
+      # - path: /conf/file
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: homework-service
+      #       port:
+      #         number: 80
