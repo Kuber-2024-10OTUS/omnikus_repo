@@ -24,7 +24,7 @@ spec:
       containers:
       - name: webserver
         image: nginx
-        command: ["/bin/sh","-c"]
+        #command: ["/bin/sh","-c"]
         #args: ["sed -i 's/listen  .*/listen 8000;/g' /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
         resources:
           limits:
