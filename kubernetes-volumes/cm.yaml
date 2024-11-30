@@ -29,7 +29,7 @@ data:
   default.conf: |-
     server {
             listen 8000 default_server;
-            root /;
+            root /homework;
             server_name  _;
             index index.php index.html;
             location / {
