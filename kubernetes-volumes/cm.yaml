@@ -29,7 +29,7 @@ data:
   default.conf: |-
     server {
             listen 8000 default_server;
-            root /homework/;
+            root /;
             server_name  _;
             index index.php index.html;
             location / {
@@ -45,7 +45,7 @@ data:
                 fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
             }
 
-            location /homework/conf/file {
+            location /conf/file {
                 root /homework/conf/;
                 index test.html;
             }
