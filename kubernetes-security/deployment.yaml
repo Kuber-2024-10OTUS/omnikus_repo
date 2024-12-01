@@ -20,7 +20,7 @@ spec:
       labels:
         app: homework
     spec:
-      ServiceAccountName: monitoring
+      serviceAccountName: monitoring
 
       containers:
       - name: webserver
