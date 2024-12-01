@@ -20,7 +20,8 @@ spec:
       labels:
         app: homework
     spec:
-  
+      ServiceAccountName: monitoring
+
       containers:
       - name: webserver
         image: nginx
