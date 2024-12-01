@@ -5,7 +5,7 @@ metadata:
   annotations:
     storageclass.kubernetes.io/is-default-class: "false"
 
-provisioner: https://kubernetes.io/minikube-hostpath
+provisioner: 'https://kubernetes.io/minikube-hostpath'
 reclaimPolicy: Retain
 allowVolumeExpansion: true 
 mountOptions:
