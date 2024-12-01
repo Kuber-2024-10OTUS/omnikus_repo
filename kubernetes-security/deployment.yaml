@@ -64,6 +64,12 @@ spec:
         volumeMounts:
         - name: homework-volume
           mountPath: /init
+      - name: metrics-container
+        image: busybox
+        command: ['wget', '-O', '/metrics/metrics.html', 'https://info.cern.ch/hypertext/WWW/TheProject.html']
+        volumeMounts:
+        - name: homework-volume
+          mountPath: /metrics
 
       
       volumes: 
