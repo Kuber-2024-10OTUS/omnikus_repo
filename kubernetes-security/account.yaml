@@ -44,7 +44,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: monitoring
-    apiGroup: rbac.authorization.k8s.io
+    apiGroup: ""
 roleRef:
   kind: ClusterRole
   name: homework-role
@@ -59,7 +59,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: cd
-    apiGroup: rbac.authorization.k8s.io
+    apiGroup: ""
 roleRef:
   kind: Role
   name: admin
