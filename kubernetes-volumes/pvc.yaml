@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: homework-pvc
+  namespace: homework
+
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: low-latency
+  resources:
+    requests:
+      storage: 500Mi
+  #storageClassName: ""
+  volumeName: homework-pv
+
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: homework-pv
+  namespace: homework
+
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  #storageClassName: ""
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+     name: homework-pvc
+     namespace: homework
+  hostPath:
+    path: "/tmp/data"
