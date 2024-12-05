@@ -33,7 +33,7 @@ spec:
             cpu: "300m"
             memory: "128Mi"
         ports:
-          - containerPort: {{ .Values.deployment.template.spec.ports.containerPort}}
+          - containerPort: {{ .Values.deployment.template.spec.containers.ports.containerPort}}
             name: nginx-web-view
         volumeMounts:
         - name: homework-volume
