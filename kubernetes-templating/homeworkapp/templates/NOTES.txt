@@ -1,1 +1,1 @@
-Сервис доступен по адресу http://homework.otus/homepage
+Сервис доступен по адресу http://homework.release/homepage
