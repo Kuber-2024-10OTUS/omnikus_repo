@@ -1,0 +1,31 @@
+repositories:
+  - name: kafka
+    url: oci://registry-1.docker.io/bitnamicharts/kafka
+
+releases:
+  - name: kafka-relese-prod
+    namespace: prod
+    chart: bitnamicharts/kafka
+    version: 3.5.2
+    set:
+      - name: listeners.client.client.protocol
+        value: SASL_PLAINTEXT
+      - name: listeners.client.interbroker.protocol
+        value: SASL_PLAINTEXT
+      - name: replicaCount
+        value: 5
+
+
+  - name: kafka-relese-dev
+    namespace: dev
+    chart: bitnamicharts/kafka
+    version: 3.9.0
+    set:
+      - name: listeners.client.client.protocol
+        value: PLAINTEXT
+      - name: listeners.client.interbroker.protocol
+        value: PLAINTEXT
+      - name: replicaCount
+        value: 1
+      - name: zookeeper.auth.enabled
+        value: false
