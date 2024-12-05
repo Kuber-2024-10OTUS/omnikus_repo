@@ -17,7 +17,7 @@ ingress:
 service:
   name: homework-release-service
   spec:
-    type: ClusterIp
+    type: ClusterIP
     ports:
       protocol: TCP
       port: 80
