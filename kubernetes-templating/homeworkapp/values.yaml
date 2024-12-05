@@ -1,0 +1,53 @@
+appName: homework-release
+
+namespace: homework-release-helm
+
+persistentVolume:
+  name: homework-release-pv
+
+storageClass:
+  name: homework-release-latency
+
+persistentVolumeClaim:
+  name: homework-release-pvc
+
+ingress:
+  name: homework-release-ingress
+
+service:
+  name: homework-release-service
+  spec:
+    type: ClusterIP
+    ports:
+      protocol: TCP
+      port: 80
+      targetPort: 8000
+
+deployment: 
+  name: homework-release-deployment
+  spec:
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxUnavailable: 35%
+    replicas: 3
+
+  template:
+    spec:
+      containers:
+        name: webserver
+        image: nginx
+        tag: latest
+        ports:
+          containerPort: 8000
+      initContainers:
+        name: init-container
+        image: busybox
+
+
+readinessProbe:
+  httpGet:
+    path: /index.html
+    port: 8000
+  initialDelaySeconds: 5
+  periodSeconds: 5

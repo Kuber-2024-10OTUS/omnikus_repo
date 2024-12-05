@@ -1,32 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: homework-deployment
-  namespace: homework
+  name: {{ .Values.deployment.name }}
+  namespace: {{ .Values.namespace }}
   labels:
-    app: homework-pod
+    app: {{ .Values.appName }}
 
 spec:
   strategy:
-    type: RollingUpdate
+    type: {{ .Values.deployment.spec.strategy.type }}
     rollingUpdate:
-      maxUnavailable: 35%
-  replicas: 3
+      maxUnavailable: {{ .Values.deployment.spec.strategy.rollingUpdate.maxUnavailable}}
+  replicas: {{ .Values.deployment.spec.replicas }}
   selector:
     matchLabels:
-      app: homework
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: homework
+        app: {{ .Values.appName }}
     spec:
       serviceAccountName: monitoring
   
       containers:
-      - name: webserver
-        image: nginx
-        #command: ["/bin/sh","-c"]
-        #args: ["sed -i 's/listen  .*/listen 8000;/g' /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
+      - name: {{ .Values.deployment.template.spec.containers.name }}
+        image: "{{ .Values.deployment.template.spec.containers.image}}:{{ .Values.deployment.template.spec.containers.image}}"
         resources:
           limits:
             memory: "128Mi"
@@ -35,7 +33,7 @@ spec:
             cpu: "300m"
             memory: "128Mi"
         ports:
-          - containerPort: 8000
+          - containerPort: {{ .Values.deployment.template.spec.containers.ports.containerPort}}
             name: nginx-web-view
         volumeMounts:
         - name: homework-volume
@@ -49,17 +47,15 @@ spec:
           preStop:
             exec:
               command: ['bash', '-c', 'rm /homework/index.html']
+        {{- if .Values.readinessProbe }}
         readinessProbe:
-          httpGet:
-            path: /index.html
-            port: 8000
-          initialDelaySeconds: 5
-          periodSeconds: 5
+          {{- toYaml .Values.readinessProbe | nindent 10 }}
+        {{- end }}
 
 
       initContainers:
-      - name: init-container
-        image: busybox
+      - name: {{ .Values.deployment.template.spec.initContainers.name }}
+        image: {{ .Values.deployment.template.spec.initContainers.image }}
         command: ['wget', '-O', '/init/index.html', 'http://info.cern.ch']
         volumeMounts:
         - name: homework-volume

@@ -1,0 +1,1 @@
+Сервис доступен по адресу http://homework.release/homepage
