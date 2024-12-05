@@ -6,7 +6,7 @@ persistentVolume:
   name: homework-pv
 
 storageClass:
-  name: low-latency
+  name: homework-latency
 
 persistentVolumeClaim:
   name: homework-pvc
