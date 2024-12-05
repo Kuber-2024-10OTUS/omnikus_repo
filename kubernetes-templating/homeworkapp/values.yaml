@@ -1,21 +1,21 @@
-appName: homework
+appName: homework-release
 
-namespace: homework-helm
+namespace: homework-release-helm
 
 persistentVolume:
-  name: homework-pv
+  name: homework-release-pv
 
 storageClass:
-  name: homework-latency
+  name: homework-release-latency
 
 persistentVolumeClaim:
-  name: homework-pvc
+  name: homework-release-pvc
 
 ingress:
-  name: homework-ingress
+  name: homework-release-ingress
 
 service:
-  name: homework-service
+  name: homework-release-service
   spec:
     type: ClusterIp
     ports:
@@ -24,7 +24,7 @@ service:
       targetPort: 8000
 
 deployment: 
-  name: homework-deployment
+  name: homework-release-deployment
   spec:
     strategy:
       type: RollingUpdate
