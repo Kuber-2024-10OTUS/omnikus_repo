@@ -2,7 +2,7 @@ appName: homework
 
 namespace: homework-helm
 
-persistnentVolume:
+persistentVolume:
   name: homework-pv
 
 storageClass:
