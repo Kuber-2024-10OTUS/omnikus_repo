@@ -49,7 +49,7 @@ spec:
               command: ['bash', '-c', 'rm /homework/index.html']
         {{- if .Values.readinessProbe }}
         readinessProbe:
-          {{- .Values.readinessProbe | nindent 10 }}
+          {{- toYaml .Values.readinessProbe | nindent 10 }}
         {{- end }}
 
 
