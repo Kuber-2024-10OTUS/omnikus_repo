@@ -23,4 +23,8 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: crd-account
-    apiGroup: 
+    apiGroup: homework.otus
+roleRef:
+  kind: ClusterRole
+  name: crd-role
+  apiGroup: homework.otus
