@@ -16,6 +16,7 @@ rules:
     verbs:
       - create
       - delete
+      - patch
   - apiGroups: ["","otus.homework"]
     resources: 
       - events
