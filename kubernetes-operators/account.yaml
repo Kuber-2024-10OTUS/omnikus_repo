@@ -10,10 +10,15 @@ metadata:
   name: crd-role
   namespace: default
 rules:
+  - apiGroups: ["apps"]
+    resources:
+      - deployments
+    verbs:
+      - create
+      - delete
   - apiGroups: ["","otus.homework"]
     resources: 
       - pods
-      - deployments
       - services
       - persistentvolumes
       - persistentvolumeclaims
