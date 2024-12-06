@@ -13,6 +13,7 @@ rules:
   - apiGroups: ["apps","otus.homework"]
     resources:
       - deployments
+      - deployments/status
     verbs:
       - create
       - delete
