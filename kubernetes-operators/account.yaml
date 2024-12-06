@@ -18,6 +18,7 @@ rules:
       - delete
   - apiGroups: ["","otus.homework"]
     resources: 
+      - events
       - pods
       - services
       - persistentvolumes
