@@ -23,8 +23,8 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: crd-account
-    apiGroup: homework.otus
+    apiGroup: "homework.otus"
 roleRef:
   kind: ClusterRole
   name: crd-role
-  apiGroup: homework.otus
+  apiGroup: rbac.authorization.k8s.io
