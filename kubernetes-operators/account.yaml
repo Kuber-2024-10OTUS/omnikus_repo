@@ -11,8 +11,11 @@ metadata:
   namespace: default
 rules:
   - apiGroups: ["otus.homework"]
-    resources: ["pods", "deployments", "service", "pv", "pvc", "mysqls"]
+    resources: ["pods", "deployments", "service", "pv", "pvc"]
     verbs: ["get", "list", "create", "update", "delete"]
+  - apiGroups: ["otus.homework"]
+    resources: ["mysqls"]
+    verbs: ["get", "list", "watch"]
 ---
 
 apiVersion: rbac.authorization.k8s.io/v1
