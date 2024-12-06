@@ -4,7 +4,7 @@ metadata:
   name: mysqls.homework.otus
 
 spec:
-  group: homework.otus
+  group: otus.homework
   scope: Namespaced
   names:
     plural: mysqls
