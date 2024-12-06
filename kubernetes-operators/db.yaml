@@ -1,7 +1,7 @@
 apiVersion: homework.otus/v1
 kind: MySQL
 metadata:
-  name: database
+  name: custom-database
 spec:
   image: "roflmaoinmysoul/mysql-operator:1.0.0"
   database: "homework-db"
