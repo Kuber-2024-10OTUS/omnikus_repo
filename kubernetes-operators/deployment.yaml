@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-mysql-controller
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: custom-mysql-controller
+  template:
+    metadata:
+      labels:
+        app: custom-mysql-controller
+    spec:
+      serviceAccountName: crd-account
+      containers:
+        - name: custom-mysql-controller
+          image:  roflmaoinmysoul/mysql-operator:1.0.0
