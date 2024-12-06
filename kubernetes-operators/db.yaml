@@ -1,0 +1,9 @@
+apiVersion: homework.otus/v1
+kind: MySQL
+metadata:
+  name: database
+spec:
+  image: "roflmaoinmysoul/mysql-operator:1.0.0"
+  database: "homework-db"
+  password: "123456"
+  storage_size: "500Mi"
