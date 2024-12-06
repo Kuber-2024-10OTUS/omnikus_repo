@@ -11,7 +11,7 @@ metadata:
   namespace: default
 rules:
   - apiGroups: ["otus.homework"]
-    resources: ["pods", "deployments", "service", "pv", "pvc"]
+    resources: ["pods", "deployments", "service", "pv", "pvc", "mysqls"]
     verbs: ["get", "list", "create", "update", "delete"]
 ---
 
