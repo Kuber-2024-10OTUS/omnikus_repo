@@ -1,4 +1,4 @@
-apiVersion: homework.otus/v1
+apiVersion: otus.homework/v1
 kind: MySQL
 metadata:
   name: custom-database
