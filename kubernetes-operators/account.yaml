@@ -10,13 +10,14 @@ metadata:
   name: crd-role
   namespace: default
 rules:
-  - apiGroups: ["","apps","otus.homework"]
+  - apiGroups: ["apps","otus.homework"]
     resources:
       - deployments
     verbs:
       - create
       - delete
       - patch
+      - get
   - apiGroups: ["","otus.homework"]
     resources: 
       - events
