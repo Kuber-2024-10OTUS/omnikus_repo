@@ -13,6 +13,7 @@ rules:
   - apiGroups: ["","otus.homework"]
     resources: 
       - pods
+      - deployments
       - services
       - persistentvolumes
       - persistentvolumeclaims
