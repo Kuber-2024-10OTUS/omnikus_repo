@@ -25,10 +25,10 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-stub-deploy
-  namepsace: nginx-stub
+  name: nginx-stub-deployment
+  namespace: nginx-stub
   labels:
-    app: nginx-stub
+    app: nginx-stub-pod
 
 spec:
   replicas: 1
