@@ -45,22 +45,23 @@ spec:
         - name: custom-nginx-stub
           image: nginx
           resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-          requests:
-            cpu: "300m"
-            memory: "128Mi"
-        ports:
-          - containerPort: 80
-        - name: stub-cm
-          mountPath: /etc/nginx/conf.d
-          readOnly: true
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+            requests:
+              cpu: "300m"
+              memory: "128Mi"
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: stub-cm
+              mountPath: /etc/nginx/conf.d
+              readOnly: true
 
 
       volumes:
-      - name: stub-cm
-        configMap:
-          defaultMode: 256
-          name: nginx-stub-cm
-          optional: false
+        - name: stub-cm
+          configMap:
+            defaultMode: 256
+            name: nginx-stub-cm
+            optional: false
