@@ -9,3 +9,9 @@ COPY stub_status.conf conf.d/stub_status.conf
 RUN ls -la conf.d/stub_status.conf
 
 RUN nginx -t
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
+
+CMD ["nginx", "-g", "daemon off;"]
