@@ -1,5 +1,6 @@
 import kopf
 import logging
+import kubernetes
 
 @kopf.on.create('epherlvoplumeclaims')
 def create_fn(body, **kwargs):
