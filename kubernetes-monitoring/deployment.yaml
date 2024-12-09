@@ -1,0 +1,66 @@
+apiVerion: v1
+kind: namespace
+metadata:
+  name: nginx-stub
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-stub-cm
+  namespace: nginx-stub
+data:
+  default.conf: |-
+      server {
+        listen 127.0.0.1:80;
+        server_name 127.0.0.1;
+        location /nginx_status {
+            stub_status on;
+            allow 127.0.0.1;
+            deny all;
+          }
+      }
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-stub-deploy
+  namepsace: nginx-stub
+  labels:
+    app: nginx-stub
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-stub
+  template:
+    metadata:
+      labels:
+        app: nginx-stub
+
+    spec:
+      containers:
+        - name: custom-nginx-stub
+          image: nginx
+          resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            cpu: "300m"
+            memory: "128Mi"
+        ports:
+          - containerPort: 80
+        - name: stub-cm
+          mountPath: /etc/nginx/conf.d
+          readOnly: true
+
+
+      volumes:
+      - name: stub-cm
+        configMap:
+          defaultMode: 256
+          name: nginx-stub-cm
+          optional: false
