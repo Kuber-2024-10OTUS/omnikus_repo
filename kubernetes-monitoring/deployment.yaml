@@ -65,3 +65,18 @@ spec:
             defaultMode: 256
             name: nginx-stub-cm
             optional: false
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-stub
+  namespace: nginx-stub
+spec:
+  type: ClusterIP
+  selector:
+    app: nginx-stub
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 80
