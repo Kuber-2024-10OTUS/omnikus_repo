@@ -33,7 +33,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  #- host: "homework.stub"
+  - host: "homework.stub"
     http:
       paths:
       - path: /prometheus(/|$)(.*)
