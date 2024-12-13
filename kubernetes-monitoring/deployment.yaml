@@ -57,6 +57,16 @@ spec:
             - name: stub-cm
               mountPath: /etc/nginx/conf.d
               readOnly: true
+        - name: nginx-reporter
+          image: nginx/nginx-prometheus-exporter:latest
+          args:
+            - '-custom-nginx-stub.scrape-uri=http://localhost:80/nginx_status'
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 500m
+          ports:
+            - containerPort: 9113
 
 
       volumes:
