@@ -67,6 +67,7 @@ spec:
               cpu: 500m
           ports:
             - containerPort: 9113
+              name: stub
 
 
       volumes:
@@ -99,9 +100,11 @@ metadata:
   name: stub-custom-service
   labels:
     app: nginx-stub
+    release: prom
 spec:
   selector:
     matchLabels:
       app: nginx-stub
+      release: prom
   endpoints:
     - port: stub
