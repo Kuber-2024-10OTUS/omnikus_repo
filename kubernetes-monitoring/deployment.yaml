@@ -89,4 +89,18 @@ spec:
   ports:
     - protocol: TCP
       port: 8000
-      targetPort: 80
+      targetPort: 9113
+---
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: stub-custom-service
+  labels:
+    app: nginx-stub
+spec:
+  selector:
+    matchLables:
+      app: nginx-stub
+  endpoints:
+    - port: 8000
