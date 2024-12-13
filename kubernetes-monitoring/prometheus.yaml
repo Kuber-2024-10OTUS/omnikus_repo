@@ -13,12 +13,32 @@ kind: Service
 metadata:
   name: prometheus-main
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: web
-    nodePort: 30900
     port: 9090
     protocol: TCP
     targetPort: web
   selector:
     prometheus: main
+---
+
+apiVersion: extensions/v1
+kind: Ingress
+metadata:
+  name: monitoring
+  annotations:
+    ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/16 # change this range to admin IPs
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: prometheus-main
+          servicePort: 9090
+        path: /prometheus(/|$)(.*)
+      - backend:
+          serviceName: alertmanager-main
+          servicePort: 9093
+        path: /alertmanager(/|$)(.*)
