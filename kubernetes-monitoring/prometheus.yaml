@@ -36,8 +36,8 @@ spec:
   - host: "homework.stub"
     http:
       paths:
-      - path: /prometheus
-        pathType: Prefix
+      - path: /prometheus(/|$)(.*)
+        pathType: ImplementationSpecific
         backend:
           service:
             name: prometheus-main
