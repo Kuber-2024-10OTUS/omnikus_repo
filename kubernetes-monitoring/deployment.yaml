@@ -100,7 +100,7 @@ metadata:
     app: nginx-stub
 spec:
   selector:
-    matchLables:
+    matchLabels:
       app: nginx-stub
   endpoints:
     - port: 8000
