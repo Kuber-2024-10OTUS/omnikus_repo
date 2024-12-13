@@ -100,11 +100,9 @@ metadata:
   name: stub-custom-service
   labels:
     app: nginx-stub
-    release: prom
 spec:
   selector:
     matchLabels:
       app: nginx-stub
-      release: prom
   endpoints:
     - port: stub
