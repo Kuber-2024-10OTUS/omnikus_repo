@@ -60,7 +60,7 @@ spec:
         - name: nginx-reporter
           image: nginx/nginx-prometheus-exporter:latest
           args:
-            - '-nginx.scrape-uri=http://localhost:80/nginx_status'
+            - '--nginx.scrape-uri=http://localhost:80/nginx_status'
           resources:
             limits:
               memory: 128Mi
