@@ -94,7 +94,7 @@ metadata:
 spec:
   selector:
     app: prometheus-server
-  externalIps: 172.16.11.211
+  externalIp: 172.16.11.211
   ports:
     - protocol: TCP
       port: 80
