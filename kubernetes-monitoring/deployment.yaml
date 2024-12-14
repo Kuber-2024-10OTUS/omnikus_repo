@@ -89,9 +89,8 @@ spec:
     app: nginx-stub
   ports:
     - protocol: TCP
-      name: stub
       port: 9090
-      targetPort: 9113
+      targetPort: 80
 ---
 
 apiVersion: monitoring.coreos.com/v1
