@@ -94,7 +94,9 @@ metadata:
 spec:
   selector:
     app: prometheus-server
-  externalIp: 172.16.11.211
+  externalIPs: 
+    - 172.16.11.211
+  externalTrafficPolicy: Cluster
   ports:
     - protocol: TCP
       port: 80
