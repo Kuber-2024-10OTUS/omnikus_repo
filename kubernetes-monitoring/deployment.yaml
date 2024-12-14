@@ -29,7 +29,6 @@ metadata:
   namespace: monitoring
   labels:
     app: nginx-stub-pod
-
 spec:
   replicas: 1
   selector:
@@ -39,7 +38,6 @@ spec:
     metadata:
       labels:
         app: nginx-stub
-
     spec:
       containers:
         - name: custom-nginx-stub
@@ -53,6 +51,7 @@ spec:
               memory: "128Mi"
           ports:
             - containerPort: 80
+              name: nginx-web
           volumeMounts:
             - name: stub-cm
               mountPath: /etc/nginx/conf.d
@@ -60,24 +59,22 @@ spec:
         - name: nginx-reporter
           image: nginx/nginx-prometheus-exporter:latest
           args:
-            - '--nginx.scrape-uri=http://localhost:80/nginx_status'
+            - '--nginx.scrape-uri=http://localhost/nginx_status'
           resources:
             limits:
               memory: 128Mi
               cpu: 500m
           ports:
             - containerPort: 9113
-              name: stub
-
-
+              name: nginx-metrics
       volumes:
         - name: stub-cm
           configMap:
             defaultMode: 256
             name: nginx-stub-cm
             optional: false
-
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -89,8 +86,8 @@ spec:
     app: nginx-stub
   ports:
     - protocol: TCP
-      port: 9090
-      targetPort: 80
+      port: 8080
+      name: nginx-metrics
 ---
 
 apiVersion: monitoring.coreos.com/v1
@@ -104,5 +101,4 @@ spec:
     matchLabels:
       app: nginx-stub
   endpoints:
-    - port: stub
----
+    - port: nginx-metrics
