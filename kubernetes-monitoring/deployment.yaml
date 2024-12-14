@@ -124,6 +124,6 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: nginx-prometheus-server
+            name: prometheus-main
             port:
               number: 9090
