@@ -86,7 +86,7 @@ spec:
     app: nginx-stub
   ports:
     - protocol: TCP
-      port: 8080
+      port: 9113
       name: nginx-metrics
 ---
 
@@ -102,3 +102,5 @@ spec:
       app: nginx-stub
   endpoints:
     - port: nginx-metrics
+      interval: 15s
+      path: /metrics
