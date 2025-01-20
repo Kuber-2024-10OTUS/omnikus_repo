@@ -4,14 +4,14 @@ metadata:
   name: prometheus-frontend
   namespace: monitoring
 rules:
-- apiGroups: ["", "monitoring"]
+- apiGroups: ["",]
   resources:
   - nodes
   - services
   - endpoints
   - pods
   verbs: ["get", "list", "watch"]
-- apiGroups: ["", "monitoring"]
+- apiGroups: [""]
   resources:
   - configmaps
   verbs: ["get"]
@@ -22,6 +22,20 @@ kind: ServiceAccount
 metadata:
   name: prometheus-frontend
   namespace: monitoring
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: prometheus-frontend
+  namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: prometheus-frontend
+subjects:
+- kind: ServiceAccount
+  name: prometheus-frontend
+  namespace: default
 
 ---
 
