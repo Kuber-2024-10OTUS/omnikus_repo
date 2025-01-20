@@ -12,8 +12,7 @@ metadata:
 data:
   default.conf: |-
     server {
-        listen 127.0.0.1:80;
-        server_name 127.0.0.1;
+        listen 8080;
         location /nginx_status {
             stub_status on;
         }
