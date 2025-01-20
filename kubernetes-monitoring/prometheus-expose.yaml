@@ -3,6 +3,8 @@ kind: Prometheus
 metadata:
   name: main
   namespace: monitoring
+  labels:
+    prometheus: main
 spec:
   resources:
     requests:
