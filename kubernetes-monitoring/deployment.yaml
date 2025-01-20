@@ -50,6 +50,8 @@ spec:
           ports:
             - containerPort: 80
               name: nginx-web
+            - containerPort: 8080
+              name: nginx-status
           volumeMounts:
             - name: stub-cm
               mountPath: /etc/nginx/conf.d
@@ -57,7 +59,7 @@ spec:
         - name: nginx-reporter
           image: nginx/nginx-prometheus-exporter:latest
           args:
-            - '--nginx.scrape-uri=http://localhost/nginx_status'
+            - '--nginx.scrape-uri=http://127.0.0.1:8080/nginx_status'
           resources:
             limits:
               memory: 128Mi
@@ -86,6 +88,12 @@ spec:
     - protocol: TCP
       port: 9113
       name: nginx-metrics
+      taargetPort: nginx-metrics
+    - protocol: TCP
+      port: 80
+      name: web
+      targetPort: nginx-web
+
 ---
 
 apiVersion: monitoring.coreos.com/v1
@@ -101,4 +109,3 @@ spec:
   endpoints:
     - port: nginx-metrics
       interval: 15s
-      path: /metrics
