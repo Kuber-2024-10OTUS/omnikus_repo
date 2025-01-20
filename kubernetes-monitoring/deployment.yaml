@@ -79,7 +79,7 @@ kind: Service
 metadata:
   name: svc-stub
   labels:
-    app: nginx-stub
+    app: service-stub
   namespace: monitoring
 spec:
   type: ClusterIP
@@ -103,7 +103,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nginx-stub
+      app: service-stub
   targetLabels:
     - app
   endpoints:
