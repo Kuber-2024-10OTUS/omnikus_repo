@@ -35,7 +35,7 @@ metadata:
 spec:
   resources:
     requests:
-      memory: 400Mi
+      memory: 800Mi
   serviceAccountName: prometheus-frontend
   serviceMonitorSelector:
     matchLabels:
