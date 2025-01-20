@@ -90,10 +90,6 @@ spec:
       port: 9113
       name: nginx-metrics
       targetPort: nginx-metrics
-    - protocol: TCP
-      port: 80
-      name: nginx-web
-      targetPort: nginx-web
 
 ---
 

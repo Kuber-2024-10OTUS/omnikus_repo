@@ -1,3 +1,30 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: prometheus-frontend
+  namespace: monitoring
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - services
+  - endpoints
+  - pods
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources:
+  - configmaps
+  verbs: ["get"]
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus-frontend
+  namespace: monitoring
+
+---
+
 apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
@@ -9,6 +36,10 @@ spec:
   resources:
     requests:
       memory: 400Mi
+  serviceAccountName: prometheus-frontend
+  serviceMonitorSelector:
+    matchLables:
+      app: nginx-stub
 ---
 
 apiVersion: v1
