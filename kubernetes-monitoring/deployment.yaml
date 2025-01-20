@@ -115,4 +115,4 @@ spec:
       interval: 10s
   namespaceSelector:
     matchNames:
-      - monitroring
+      - monitoring
