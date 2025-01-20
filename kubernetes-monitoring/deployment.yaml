@@ -90,7 +90,7 @@ spec:
       targetPort: nginx-metrics
     - protocol: TCP
       port: 80
-      name: web
+      name: nginx-web
       targetPort: nginx-web
 
 ---
