@@ -38,7 +38,7 @@ spec:
       memory: 400Mi
   serviceAccountName: prometheus-frontend
   serviceMonitorSelector:
-    matchLables:
+    matchLabels:
       app: nginx-stub
 ---
 
