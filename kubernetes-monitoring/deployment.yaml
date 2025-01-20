@@ -108,6 +108,11 @@ spec:
   selector:
     matchLabels:
       app: nginx-stub
+  targetLabels:
+    - app
   endpoints:
     - port: nginx-metrics
-      path: /metrics
+      interval: 10s
+  namespaceSelector:
+    matchNames:
+      - monitroring
