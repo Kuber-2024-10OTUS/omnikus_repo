@@ -100,7 +100,7 @@ spec:
           service:
             name: prometheus-grafana
             port:
-              number: 80
+              number: 3000
 # apiVersion: v1
 # kind: ConfigMap
 # metadata:
