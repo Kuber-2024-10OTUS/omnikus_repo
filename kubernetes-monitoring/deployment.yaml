@@ -107,4 +107,4 @@ spec:
       app: nginx-stub
   endpoints:
     - port: nginx-metrics
-      interval: 15s
+      path: /metrics
