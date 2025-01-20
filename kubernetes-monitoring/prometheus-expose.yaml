@@ -116,7 +116,8 @@ spec:
         backend:
           service:
             name: alertmanager-main
-            port: 9093
+            port:
+              number: 9093
 # apiVersion: v1
 # kind: ConfigMap
 # metadata:
