@@ -1,0 +1,9 @@
+apiVersion: otus.homework/v1
+kind: MySQL
+metadata:
+  name: custom-database
+spec:
+  image: "roflmaoinmysoul/mysql-operator:1.0.0"
+  database: "homework-db"
+  password: "sdgawqsfas"
+  storage_size: "500Mi"
