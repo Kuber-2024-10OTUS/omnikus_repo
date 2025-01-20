@@ -4,14 +4,14 @@ metadata:
   name: prometheus-frontend
   namespace: monitoring
 rules:
-- apiGroups: [""]
+- apiGroups: ["", "monitoring"]
   resources:
   - nodes
   - services
   - endpoints
   - pods
   verbs: ["get", "list", "watch"]
-- apiGroups: [""]
+- apiGroups: ["", "monitoring"]
   resources:
   - configmaps
   verbs: ["get"]
