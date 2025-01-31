@@ -80,7 +80,7 @@ backend:
           key: grafana-loki-s3-secretAccessKey
     - name: GRAFANA-LOKI-S3-ACCESSKEYID
       valueFrom:
-        secretKetRef: 
+        secretKeyRef: 
           name: loki-s3-secret
           value: grafana-loki-s3-accessKeyId
 
