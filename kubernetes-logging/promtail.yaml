@@ -1,0 +1,8 @@
+clients:
+  - url: http://loki-gateway.grafana.svc.cluster.local/loki/api/v1/push
+      tenant_id: 1
+tolerations:
+  - key: "node-role"        
+    operator: "Equal"
+    value: "infra"        
+    effect: "NoSchedule"

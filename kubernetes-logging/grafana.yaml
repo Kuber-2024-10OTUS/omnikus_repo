@@ -1,0 +1,15 @@
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  path: /
+  pathType: Prefix
+  hosts:
+    - otus.grafana
+
+nodeSelector:
+  node-role: "infra"
+tolerations:
+  - key: "node-role"        
+    operator: "Equal"
+    value: "infra"        
+    effect: "NoSchedule"
