@@ -90,6 +90,10 @@ read:
   replicas: 1
 write:
   replicas: 1
+  persistence:
+    volumeClaimsEnabled: false
+    dataVolumeParameters:
+      emptyDir: {}
 
 # Disable minio storage
 minio:
