@@ -48,7 +48,23 @@ loki:
       insecure: false
       http_config: {}
 
+  # Disable minio storage
+minio:
+  enabled: false
+
+deploymentMode: SingleBinary
+
+singleBinary:
+  replicas: 3
+  persistence:
+    storageClass: gp2
+    accessModes:
+      - ReadWriteOnce
+    size: 30Gi
+
+# Zero out replica counts of other deployment modes
 backend:
+  replicas: 0
   extraArgs:
     - '-config.expand-env=true'
   extraEnv:
@@ -67,46 +83,26 @@ backend:
         secretKetRef: 
           name: loki-s3-secret
           value: grafana-loki-s3-accessKeyId
+read:
+  replicas: 0
+write:
+  replicas: 0
 
-
-  deploymentMode: Distributed
-
-  # Disable minio storage
-  minio:
-      enabled: false
-
-  ingester:
-    replicas: 3
-  querier:
-    replicas: 3
-    maxUnavailable: 2
-  queryFrontend:
-    replicas: 2
-    maxUnavailable: 1
-  queryScheduler:
-    replicas: 2
-  distributor:
-    replicas: 3
-    maxUnavailable: 2
-  compactor:
-    replicas: 1
-  indexGateway:
-    replicas: 2
-    maxUnavailable: 1
-
-  bloomPlanner:
-    replicas: 0
-  bloomBuilder:
-    replicas: 0
-  bloomGateway:
-    replicas: 0
-
-  backend:
-    replicas: 0
-  read:
-    replicas: 0
-  write:
-    replicas: 0
-
-  singleBinary:
-    replicas: 0
+ingester:
+  replicas: 0
+querier:
+  replicas: 0
+queryFrontend:
+  replicas: 0
+queryScheduler:
+  replicas: 0
+distributor:
+  replicas: 0
+compactor:
+  replicas: 0
+indexGateway:
+  replicas: 0
+bloomCompactor:
+  replicas: 0
+bloomGateway:
+  replicas: 0
