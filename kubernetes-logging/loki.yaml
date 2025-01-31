@@ -52,7 +52,7 @@ loki:
 minio:
   enabled: false
 
-deploymentMode: SimpleScalable
+deploymentMode: Distributed
 
 singleBinary:
   replicas: 3
@@ -103,20 +103,20 @@ gateway:
     enableIPv6: false
 
 ingester:
-  replicas: 0
+   replicas: 3
 querier:
-  replicas: 0
+  replicas: 3
+  maxUnavailable: 2
 queryFrontend:
-  replicas: 0
+  replicas: 2
+  maxUnavailable: 1
 queryScheduler:
-  replicas: 0
+  replicas: 2
 distributor:
-  replicas: 0
+  replicas: 3
+  maxUnavailable: 2
 compactor:
-  replicas: 0
+  replicas: 1
 indexGateway:
-  replicas: 0
-bloomCompactor:
-  replicas: 0
-bloomGateway:
-  replicas: 0
+  replicas: 2
+  maxUnavailable: 1
