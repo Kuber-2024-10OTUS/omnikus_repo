@@ -72,7 +72,7 @@ backend:
       valueFrom:
         secretKeyRef:
           name: loki-s3-secret
-          value: grafana-loki-s3-endpoint
+          key: grafana-loki-s3-endpoint
     - name: GRAFANA-LOKI-S3-SECRETACCESSKEY
       valueFrom:
         secretKeyRef: 
