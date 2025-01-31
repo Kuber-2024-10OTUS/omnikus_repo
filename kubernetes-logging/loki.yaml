@@ -52,7 +52,7 @@ loki:
 minio:
   enabled: false
 
-deploymentMode: SingleBinary
+deploymentMode: SimpleScalable
 
 singleBinary:
   replicas: 3
@@ -65,7 +65,7 @@ singleBinary:
 
 # Zero out replica counts of other deployment modes
 backend:
-  replicas: 0
+  replicas: 3
   persistence:
     volumeClaimsEnabled: false
     dataVolumeParameters:
@@ -90,15 +90,15 @@ backend:
           value: grafana-loki-s3-accessKeyId
 
 write:
-  replicas: 0
+  replicas: 1
   persistence:
     volumeClaimsEnabled: false
     dataVolumeParameters:
       emptyDir: {}
 read:
-  replicas: 0
+  replicas: 1
 gateway:
-  replicas: 0
+  replicas: 1
   nginxConfig:
     enableIPv6: false
 
