@@ -66,6 +66,10 @@ singleBinary:
 # Zero out replica counts of other deployment modes
 backend:
   replicas: 0
+  persistence:
+    volumeClaimsEnabled: false
+    dataVolumeParameters:
+      emptyDir: {}
   extraArgs:
     - '-config.expand-env=true'
   extraEnv:
@@ -84,10 +88,19 @@ backend:
         secretKetRef: 
           name: loki-s3-secret
           value: grafana-loki-s3-accessKeyId
-read:
-  replicas: 0
+
 write:
-  replicas: 0
+  replicas: 5
+  persistence:
+    volumeClaimsEnabled: false
+    dataVolumeParameters:
+      emptyDir: {}
+read:
+  replicas: 5
+gateway:
+  replicas: 5
+  nginxConfig:
+    enableIPv6: false
 
 ingester:
   replicas: 0
