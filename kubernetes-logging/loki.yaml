@@ -52,15 +52,15 @@ loki:
 minio:
   enabled: false
 
-deploymentMode: SimpleScalable
+deploymentMode: Distributed  
 
-singleBinary:
-  replicas: 3
-  persistence:
-    storageClass: gp2
-    accessModes:
-      - ReadWriteOnce
-    size: 5Gi
+# singleBinary:
+#   replicas: 3
+#   persistence:
+#     storageClass: gp2
+#     accessModes:
+#       - ReadWriteOnce
+#     size: 5Gi
 
 
 # Zero out replica counts of other deployment modes
@@ -90,13 +90,13 @@ backend:
           value: grafana-loki-s3-accessKeyId
 
 write:
-  replicas: 1
+  replicas: 3
   persistence:
     volumeClaimsEnabled: false
     dataVolumeParameters:
       emptyDir: {}
 read:
-  replicas: 1
+  replicas: 3
 gateway:
   replicas: 1
   nginxConfig:
