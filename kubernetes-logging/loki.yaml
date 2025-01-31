@@ -90,15 +90,15 @@ backend:
           value: grafana-loki-s3-accessKeyId
 
 write:
-  replicas: 5
+  replicas: 0
   persistence:
     volumeClaimsEnabled: false
     dataVolumeParameters:
       emptyDir: {}
 read:
-  replicas: 5
+  replicas: 0
 gateway:
-  replicas: 5
+  replicas: 0
   nginxConfig:
     enableIPv6: false
 
