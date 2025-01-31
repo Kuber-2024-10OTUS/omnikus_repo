@@ -55,14 +55,12 @@ minio:
 deploymentMode: SingleBinary
 
 singleBinary:
-  replicas: 1
-  nodeSelector:
-    node-role: "infra"
-  tolerations:
-    - key: "node-role"        
-      operator: "Equal"
-      value: "infra"        
-      effect: "NoSchedule"
+  replicas: 3
+  persistence:
+    storageClass: gp2
+    accessModes:
+      - ReadWriteOnce
+    size: 5Gi
 
 
 # Zero out replica counts of other deployment modes
