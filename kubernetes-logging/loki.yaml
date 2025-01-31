@@ -52,7 +52,7 @@ loki:
 minio:
   enabled: false
 
-deploymentMode: Distributed
+deploymentMode: SimpleScalable
 
 singleBinary:
   replicas: 3
